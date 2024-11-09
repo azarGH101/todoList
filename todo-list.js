@@ -73,6 +73,7 @@ function changeStatus(pos) {
 // ADD TASK TO LOCAL STORAGE 
 addTaskBtn.addEventListener("click",()=>{
     const task = input.value;
+    result.style.color = 'green';
     result.innerHTML = taskAddMsg;
 
     // ADD TASK TO LOCAL STORAGE
