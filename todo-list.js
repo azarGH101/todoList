@@ -21,6 +21,13 @@ function main() {
             createTaskElement(val);
         }) ;
     }
+    // EDIT TASK NAME
+    const editBtns = document.querySelectorAll('.edit');
+
+    for(let i=0;i<editBtns.length;i++) {
+        editBtns[i].addEventListener("click",()=>editTaskName(i));
+    };
+    
     // REMOVE STRIKE THROUGHED TASKS
     const deleteBtns = document.querySelectorAll('.delete');
 
@@ -36,6 +43,14 @@ function main() {
     });
 }
 
+// EDILT TASK NAME 
+function editTaskName(pos) {
+    const label = document.querySelectorAll('.taskName');
+    input.value=label[pos].textContent;
+    const parentDiv = document.querySelectorAll('.taskDataDiv');
+    parentDiv[pos].remove();
+    temp.splice(pos,1);
+}
 // REMOVE TASK FROM LOCAL STORAGE
 function removeTask(pos) {
     // console.log('Before Delete : ', temp);
@@ -48,13 +63,16 @@ function removeTask(pos) {
     parentDiv[pos].remove();
 }
 
+
 // STRIKE THROUGH TASK
 function strikeThrough(selectedBtn) {
     const radioBtns = document.querySelectorAll('.radioBtn');
+    const editBtns = document.querySelectorAll('.edit');
     for(let i=0;i<radioBtns.length;i++) {
         if(radioBtns[i]===selectedBtn) {
             const label = radioBtns[i].parentElement;
             label.style.textDecoration = 'line-through';
+            editBtns[i].disabled = true;
             result.style.color = 'blue';
             result.innerHTML = taskCompMsg;
             changeStatus(i);
@@ -73,9 +91,8 @@ function changeStatus(pos) {
 // ADD TASK TO LOCAL STORAGE 
 addTaskBtn.addEventListener("click",()=>{
     const task = input.value;
-    result.style.color = 'green';
     result.innerHTML = taskAddMsg;
-    input.value = '';
+    input.value='';
 
     // ADD TASK TO LOCAL STORAGE
     let tempObj = {value:task,status:'Non-Complete'};
@@ -93,7 +110,7 @@ function createTaskElement(obj) {
     wrapper.appendChild(divElement);
 
     const labelElement = document.createElement('label');
-    labelElement.id = 'taskName';
+    labelElement.classList.add('taskName');
     
     const radio = document.createElement('input');
     radio.type = 'radio';
@@ -106,22 +123,32 @@ function createTaskElement(obj) {
     // PREPAND RADIO WITH LABEL
     labelElement.prepend(radio);
 
-    if(obj.status==='Complete') {
-        labelElement.style.textDecoration = 'line-through';
-        radio.disabled = 'true';
-    }
-
     divElement.appendChild(labelElement);
-    
+
+    // EDIT BUTTON CREATED
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('edit');
+    const editIcon = document.createElement("img");
+    editIcon.src = "./images/edit.png";
+    editIcon.alt = 'edit';
+    editBtn.appendChild(editIcon);
+
+    // TRASH BUTTON CREATED
     const trashBtn = document.createElement('button');
     trashBtn.classList.add('delete');
     const trashIcon = document.createElement("img");
     trashIcon.src = "./images/delete.png";
     trashIcon.alt = 'trash';
-
     trashBtn.appendChild(trashIcon);
 
+    if(obj.status==='Complete') {
+        labelElement.style.textDecoration = 'line-through';
+        radio.disabled = 'true';
+        editBtn.disabled = true;
+    }
+
     // trashBtn.value = iframe;
+    divElement.appendChild(editBtn);
     divElement.appendChild(trashBtn);
 }
 
