@@ -90,7 +90,7 @@ body {
 
 .radio-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background-color: rgb(245, 188, 118);
     padding: 10px 15px;
@@ -118,6 +118,10 @@ body {
     border: none;
     background-color: rgb(245, 188, 118);
     cursor: pointer;
+ }
+
+ .radio-group .edit {
+    margin: 0 10px 0 auto;
  }
 
  .radio-group button img {
