@@ -75,6 +75,7 @@ addTaskBtn.addEventListener("click",()=>{
     const task = input.value;
     result.style.color = 'green';
     result.innerHTML = taskAddMsg;
+    input.value = '';
 
     // ADD TASK TO LOCAL STORAGE
     let tempObj = {value:task,status:'Non-Complete'};
