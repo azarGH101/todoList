@@ -234,7 +234,9 @@ function createTaskElement(obj) {
 
     if(obj.status==='Complete') {
         labelElement.style.textDecoration = 'line-through';
+        labelElement.style.cursor = 'not-allowed';
         radio.disabled = 'true';
+        radio.style.cursor = 'not-allowed';
         editBtn.disabled = true;
         editBtn.style.cursor = 'not-allowed';
         editBtn.style.backgroundColor = 'grey';
