@@ -39,6 +39,77 @@ body {
     padding-left: 25px;
 }
 
+.todoData {
+        position: relative;
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 20px;
+        /* margin-bottom: 25px; */
+        margin: 0 auto 25px;
+        padding: 15px;
+}
+.about {
+    flex: 1;
+}
+.taskType {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    /* margin: 10px; */
+    border: 1px solid blueviolet;
+    background-color: blueviolet;
+    border-radius: 50%;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 2.2rem;
+}
+.appTitle {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+.line {
+    position: relative;
+    width: 95%;
+    display: flex;
+    margin: 10px 0;
+}
+.taskLine {
+    position: relative;
+    /* width: 25%; */
+    height: 15px;
+    border: 1px solid black;
+    background-color: black;
+}
+.taskLine:first-child {
+    border-radius: 10px 0 0 10px;
+    /* background-color: aquamarine; */
+    /* border: 1px solid aquamarine; */
+}
+.taskLine:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.tl-Animation {
+    animation: fillColor 1.5s ease forwards;
+}
+
+@keyframes fillColor {
+    0% {
+        border: 1px solid black;
+        background-color: black;
+    }
+    100% {
+        border: 1px solid aquamarine;
+        background-color: aquamarine;
+    }
+}
+
 .todoSearch {
     position: relative;
     display: block;
@@ -73,6 +144,7 @@ body {
     padding: 5px 15px;
     font-size: 1.75rem;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 #search:focus,#addTask:focus {
